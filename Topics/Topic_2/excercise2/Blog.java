@@ -43,7 +43,7 @@ public class Blog {
 				blog.set((i + 1), temp);
 			}
 		}
-		blog.remove(blog.size()-1);
+		blog.remove(blog.size() - 1);
 		return blog;
 	}
 

@@ -7,19 +7,19 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BlogTest {	
+public class BlogTest {
 
 	private Blog blog;
-	
-	@Before
-    public void setUp() {
-        blog = new Blog();
-    }
 
-    @After
-    public void tearDown() {
-        blog.clear();
-    }
+	@Before
+	public void setUp() {
+		blog = new Blog();
+	}
+
+	@After
+	public void tearDown() {
+		blog.clear();
+	}
 
 	@Test
 	public final void shouldBeEmpty() {
@@ -34,6 +34,7 @@ public class BlogTest {
 		Assert.assertTrue(true);
 
 	}
+
 	@Test
 	public final void shouldReturnTheSameString() {
 		blog.create();

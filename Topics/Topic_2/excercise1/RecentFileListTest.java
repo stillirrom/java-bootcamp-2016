@@ -7,18 +7,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class RecentFileListTest {
-	
-	private RecentFileList recentFileList;
-	
-	@Before
-    public void setUp() {
-        recentFileList = new RecentFileList();
-    }
 
-    @After
-    public void tearDown() {
-        recentFileList.clear();
-    }
+	private RecentFileList recentFileList;
+
+	@Before
+	public void setUp() {
+		recentFileList = new RecentFileList();
+	}
+
+	@After
+	public void tearDown() {
+		recentFileList.clear();
+	}
 
 	@Test
 	public final void shouldBeEmpty() {

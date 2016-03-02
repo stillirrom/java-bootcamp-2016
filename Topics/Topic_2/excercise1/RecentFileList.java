@@ -14,7 +14,7 @@ public class RecentFileList {
 		fileList = new ArrayList<String>();
 		return fileList;
 	}
-	
+
 	public List<String> clear() {
 		fileList = new ArrayList<String>();
 		return fileList;
