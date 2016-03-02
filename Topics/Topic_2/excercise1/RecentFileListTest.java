@@ -1,61 +1,71 @@
-package tddtest;
+package local.maven.tdd.mavenTddExcercise1;
 
 import static org.junit.Assert.*;
-import org.junit.Assert;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import tdd.RecentFileList;
 
 public class RecentFileListTest {
+	
+	private RecentFileList recentFileList;
+	
+	@Before
+    public void setUp() {
+        recentFileList = new RecentFileList();
+    }
+
+    @After
+    public void tearDown() {
+        recentFileList.clear();
+    }
 
 	@Test
-	public final void whenRecentFileListIsEmptyThenNoExceptionIsThrown() {
-		assertTrue(RecentFileList.create().isEmpty());
-		Assert.assertTrue(true);
+	public final void shouldBeEmpty() {
+		assertTrue(recentFileList.create().isEmpty());
 	}
 
 	@Test
-	public final void whenFileIsOpenedItsNameIsAddedToTheListThenListReturnedIsNotEmpty() {
-		RecentFileList.create();
-		assertTrue(!RecentFileList.fill("First File Name").isEmpty());
-		Assert.assertTrue(true);
+	public final void shouldNotBeEmpty() {
+		recentFileList.create();
+		assertTrue(!recentFileList.fill("First File Name").isEmpty());
 	}
 
 	@Test
-	public final void whenSecondFileIsOpenedItsNameIsAddedToTheListThenFirstValueOfListReturnedIsTheSameFileName() {
-		RecentFileList.create();
-		RecentFileList.fill("First File Name");
-		RecentFileList.fill("Second File Name");
-		assertEquals("Third File Name", (RecentFileList.fill("Third File Name").get(0)));
+	public final void shouldReturnTheSameString() {
+		recentFileList.create();
+		recentFileList.fill("First File Name");
+		recentFileList.fill("Second File Name");
+		assertEquals("Third File Name", (recentFileList.fill("Third File Name").get(0)));
 	}
 
 	@Test
-	public final void whenFileIsOpenedButItsNameIsAlreadyOnTheListThenTheNameIsBumpedToTheTop() {
-		RecentFileList.create();
-		RecentFileList.fill("First File Name");
-		RecentFileList.fill("Second File Name");
-		RecentFileList.fill("Third File Name");
-		assertEquals("First File Name", (RecentFileList.fill("First File Name").get(0)));
+	public final void shouldBumpAString() {
+		recentFileList.create();
+		recentFileList.fill("First File Name");
+		recentFileList.fill("Second File Name");
+		recentFileList.fill("Third File Name");
+		assertEquals("First File Name", (recentFileList.fill("First File Name").get(0)));
 	}
 
 	@Test
-	public final void whenFileIsOpenedButTheListIsAlreadyFullThenTheLastNameIsRemoved() {
-		RecentFileList.create();
-		RecentFileList.fill("First File Name");
-		RecentFileList.fill("Second File Name");
-		RecentFileList.fill("Third File Name");
-		RecentFileList.fill("Fourth File Name");
-		RecentFileList.fill("Fifth File Name");
-		RecentFileList.fill("Sixth File Name");
-		RecentFileList.fill("Seventh File Name");
-		RecentFileList.fill("Eighth File Name");
-		RecentFileList.fill("Ninth File Name");
-		RecentFileList.fill("Tenth File Name");
-		RecentFileList.fill("Eleventh File Name");
-		RecentFileList.fill("Twelfth File Name");
-		RecentFileList.fill("Thirteenth File Name");
-		RecentFileList.fill("Fourteenth File Name");
-		RecentFileList.fill("Fifteenth File Name");
-		assertTrue(!(RecentFileList.fill("Sixteenth File Name").contains("First File Name")));
-		Assert.assertTrue(true);
+	public final void shouldRemoveString() {
+		recentFileList.create();
+		recentFileList.fill("First File Name");
+		recentFileList.fill("Second File Name");
+		recentFileList.fill("Third File Name");
+		recentFileList.fill("Fourth File Name");
+		recentFileList.fill("Fifth File Name");
+		recentFileList.fill("Sixth File Name");
+		recentFileList.fill("Seventh File Name");
+		recentFileList.fill("Eighth File Name");
+		recentFileList.fill("Ninth File Name");
+		recentFileList.fill("Tenth File Name");
+		recentFileList.fill("Eleventh File Name");
+		recentFileList.fill("Twelfth File Name");
+		recentFileList.fill("Thirteenth File Name");
+		recentFileList.fill("Fourteenth File Name");
+		recentFileList.fill("Fifteenth File Name");
+		assertTrue(!(recentFileList.fill("Sixteenth File Name").contains("First File Name")));
 	}
 }

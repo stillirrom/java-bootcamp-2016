@@ -1,60 +1,74 @@
-package tddtest;
+package local.maven.tdd.mavenTddExcercise2;
 
 import static org.junit.Assert.*;
+
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import tdd.Blog;
 
-public class BlogTest {
+public class BlogTest {	
+
+	private Blog blog;
+	
+	@Before
+    public void setUp() {
+        blog = new Blog();
+    }
+
+    @After
+    public void tearDown() {
+        blog.clear();
+    }
 
 	@Test
-	public final void whenBlogIsEmptyThenNoExceptionIsThrown() {
-		assertTrue(Blog.create().isEmpty());
+	public final void shouldBeEmpty() {
+		assertTrue(blog.create().isEmpty());
 		Assert.assertTrue(true);
 	}
 
 	@Test
-	public final void whenFirstEntryIsMadeItIsAddedToTheListThenListReturnedIsNotEmpty() {
-		Blog.create();
-		assertTrue(!Blog.fill("First Entry").isEmpty());
+	public final void shouldNotBeEmpty() {
+		blog.create();
+		assertTrue(!blog.fill("First Entry").isEmpty());
 		Assert.assertTrue(true);
 
 	}
 	@Test
-	public final void whenNextEntriesAreMadeThoseAreAddedOnTopOfTheListThenFirstValueOfListReturnedIsTheLatestBlogEntry() {
-		Blog.create();
-		Blog.fill("First Entry");
-		Blog.fill("Second Entry");
-		assertEquals("Third Entry", Blog.fill("Third Entry").get(0));
+	public final void shouldReturnTheSameString() {
+		blog.create();
+		blog.fill("First Entry");
+		blog.fill("Second Entry");
+		assertEquals("Third Entry", blog.fill("Third Entry").get(0));
 	}
 
 	@Test
-	public final void whenEntryIsDeletedFromTheListThenTheListIsOneItemShorter() {
-		Blog.create();
-		Blog.fill("First Entry");
-		Blog.fill("Second Entry");
-		Blog.fill("Third Entry");
-		assertEquals(2, (Blog.remove("Second Entry").size()));
+	public final void ShouldDeleteString() {
+		blog.create();
+		blog.fill("First Entry");
+		blog.fill("Second Entry");
+		blog.fill("Third Entry");
+		assertEquals(2, (blog.remove("Second Entry").size()));
 	}
 
 	@Test
-	public final void whenAskedForTheTenMostRecentEntriesThenListIsTenItems() {
-		Blog.create();
-		Blog.fill("First Entry");
-		Blog.fill("Second Entry");
-		Blog.fill("Third Entry");
-		Blog.fill("Fourth Entry");
-		Blog.fill("Fifth Entry");
-		Blog.fill("Sixth Entry");
-		Blog.fill("Seventh Entry");
-		Blog.fill("Eighth Entry");
-		Blog.fill("Ninth Entry");
-		Blog.fill("Tenth Entry");
-		Blog.fill("Eleventh Entry");
-		Blog.fill("Twelfth Entry");
-		Blog.fill("Thirteenth Entry");
-		Blog.fill("Fourteenth Entry");
-		Blog.fill("Fifteenth Entry");
-		assertEquals(10, (Blog.ten().size()));
+	public final void ShouldReturnTenStrings() {
+		blog.create();
+		blog.fill("First Entry");
+		blog.fill("Second Entry");
+		blog.fill("Third Entry");
+		blog.fill("Fourth Entry");
+		blog.fill("Fifth Entry");
+		blog.fill("Sixth Entry");
+		blog.fill("Seventh Entry");
+		blog.fill("Eighth Entry");
+		blog.fill("Ninth Entry");
+		blog.fill("Tenth Entry");
+		blog.fill("Eleventh Entry");
+		blog.fill("Twelfth Entry");
+		blog.fill("Thirteenth Entry");
+		blog.fill("Fourteenth Entry");
+		blog.fill("Fifteenth Entry");
+		assertEquals(10, (blog.ten().size()));
 	}
 }

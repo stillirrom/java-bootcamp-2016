@@ -1,22 +1,26 @@
-package tdd;
+package local.maven.tdd.mavenTddExcercise1;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecentFileList {
 
-	private static List fileList = null;
+	private List<String> fileList = null;
 
-	private RecentFileList() {
+	public RecentFileList() {
 	}
 
-	public static List create() {
-		fileList = new ArrayList();
-
+	public List<String> create() {
+		fileList = new ArrayList<String>();
+		return fileList;
+	}
+	
+	public List<String> clear() {
+		fileList = new ArrayList<String>();
 		return fileList;
 	}
 
-	public static List fill(String fileName) {
+	public List<String> fill(String fileName) {
 		int enteredBump = 0;
 		if (fileList.size() <= 0) {
 			fileList.add(fileName);
@@ -31,7 +35,7 @@ public class RecentFileList {
 				if (enteredBump == 0) {
 					fileList.add(fileName);
 					for (int j = (fileList.size() - 1); j > 0; j--) {
-						String temp = (String) fileList.get(j);
+						String temp = fileList.get(j);
 						fileList.set(j, fileList.get(j - 1));
 						fileList.set(j - 1, temp);
 					}
@@ -48,7 +52,7 @@ public class RecentFileList {
 			if (enteredBump == 0) {
 				fileList.add(fileName);
 				for (int j = (fileList.size() - 1); j > 0; j--) {
-					String temp = (String) fileList.get(j);
+					String temp = fileList.get(j);
 					fileList.set(j, fileList.get(j - 1));
 					fileList.set(j - 1, temp);
 
@@ -60,11 +64,11 @@ public class RecentFileList {
 		return fileList;
 	}
 
-	private static void bump(String fileName) {
+	private void bump(String fileName) {
 		for (int i = 0; i <= fileList.size() - 1; i++) {
 			if ((fileList.get(i)).equals(fileName)) {
 				for (int x = i; x > 0; x--) {
-					String temp = (String) fileList.get(x);
+					String temp = fileList.get(x);
 					fileList.set(x, fileList.get(x - 1));
 					fileList.set(x - 1, temp);
 				}

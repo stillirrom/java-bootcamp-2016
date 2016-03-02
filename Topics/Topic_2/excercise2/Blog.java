@@ -1,22 +1,27 @@
-package tdd;
+package local.maven.tdd.mavenTddExcercise2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Blog {
 
-	private static List blog = null;
-	private static List blogTen = null;
+	private List<String> blog = null;
+	private List<String> blogTen = null;
 
-	private Blog() {
+	public Blog() {
 	}
 
-	public static List create() {
-		blog = new ArrayList();
+	public List<String> create() {
+		blog = new ArrayList<String>();
 		return blog;
 	}
 
-	public static List fill(String blogEntry) {
+	public List<String> clear() {
+		blog = new ArrayList<String>();
+		return blog;
+	}
+
+	public List<String> fill(String blogEntry) {
 		if (blog.size() <= 0) {
 			blog.add(blogEntry);
 		} else {
@@ -30,7 +35,7 @@ public class Blog {
 		return blog;
 	}
 
-	public static List remove(String blogEntry) {
+	public List<String> remove(String blogEntry) {
 		for (int i = 0; i <= (blog.size() - 1); i++) {
 			if (blog.get(i).equals(blogEntry)) {
 				String temp = "null";
@@ -42,8 +47,8 @@ public class Blog {
 		return blog;
 	}
 
-	public static List ten() {
-		blogTen = new ArrayList();
+	public List<String> ten() {
+		blogTen = new ArrayList<String>();
 		for (int i = 0; i <= 9; i++) {
 			blogTen.add(i, blog.get(i));
 		}
