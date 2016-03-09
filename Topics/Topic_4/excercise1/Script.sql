@@ -16,12 +16,13 @@ CREATE TABLE Course (
 );
 
 CREATE TABLE Notes (
+  idNotes INTEGER NOT NULL AUTO_INCREMENT,
   Enroll_idEnroll INTEGER NOT NULL,
   partialNote1Notes FLOAT NOT NULL,
   partialNote2Notes FLOAT NOT NULL,
   partialNote3Notes FLOAT NOT NULL,
   finalNoteNotes FLOAT NOT NULL,
-  PRIMARY KEY(Enroll_idEnroll),
+  PRIMARY KEY(idNotes),
   INDEX Notes_FKIndex1(Enroll_idEnroll)
 );
 
@@ -94,18 +95,19 @@ INSERT INTO Enroll values (default, 3, '1023546984');
 INSERT INTO Enroll values (default, 3, '7589654');
 INSERT INTO Enroll values (default, 3, '1013595915');
 
-INSERT INTO Notes values ('1', '2.5', '3.5', '4', '4');
-INSERT INTO Notes values ('2', '2.5', '1.5', '4', '2.4');
-INSERT INTO Notes values ('3', '2.1', '1.9', '3', '2');
-INSERT INTO Notes values ('4', '5', '5', '5', '5');
-INSERT INTO Notes values ('5', '0', '3', '5', '2.8');
-INSERT INTO Notes values ('6', '3', '3', '3', '3');
-INSERT INTO Notes values ('7', '3', '3', '3', '3');
-INSERT INTO Notes values ('8', '3', '3', '3', '3');
-INSERT INTO Notes values ('9', '3', '3', '3', '3');
-INSERT INTO Notes values ('10', '3', '3', '3', '3');
-INSERT INTO Notes values ('11', '3', '3', '3', '3');
-INSERT INTO Notes values ('12', '3', '3', '3', '3');
+    
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('1', '2.5', '3.5', '4', '4');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('2', '2.5', '1.5', '4', '2.4');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('3', '2.1', '1.9', '3', '2');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('4', '5', '5', '5', '5');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('5', '0', '3', '5', '2.8');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('6', '3', '3', '3', '3');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('7', '3', '3', '3', '3');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('8', '3', '3', '3', '3');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('9', '3', '3', '3', '3');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('10', '3', '3', '3', '3');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('11', '3', '3', '3', '3');
+INSERT INTO Notes (Enroll_idEnroll, partialNote1Notes, partialNote2Notes, partialNote3Notes, finalNoteNotes) values ('12', '3', '3', '3', '3');
 
 INSERT into Schedule_Time VALUES (default, '1', 'MONDAY***', '08:00', '10:00');
 INSERT into Schedule_Time VALUES (default, '1', 'FRIDAY***', '12:00', '14:00');
@@ -114,12 +116,18 @@ INSERT into Schedule_Time VALUES (default, '2', 'SATURDAY*', '10:00', '12:00');
 INSERT into Schedule_Time VALUES (default, '3', 'WEDNESDAY', '08:00', '10:00');
 INSERT into Schedule_Time VALUES (default, '3', 'THURSDAY*', '09:00', '11:00');
 
-SELECT en.idEnroll, co.nameCourse, te.lastNameTeacher, te.firstNameTeacher, st.lastNameStudent, st.firstNameStudent 
+SELECT co.nameCourse, te.lastNameTeacher, te.firstNameTeacher, st.lastNameStudent, st.firstNameStudent 
 from Course co, Teacher te, Student st, Enroll en
 where en.Course_idCourse = co.idCourse
 and en.Student_registrationNumberStudent = st.registrationNumberStudent
 and co.Teacher_idTeacher = te.idTeacher
 order by st.lastNameStudent ASC;
+
+SELECT count(n.finalNoteNotes) from Notes n, Course co, Enroll en
+where n.finalNoteNotes >= 3
+and n.Enroll_idEnroll = en.idEnroll
+and en.Course_idCourse = co.idCourse
+group by co.nameCourse;
 
 SELECT co.nameCourse, count(*)/4*100
 from Notes n, Course co, Enroll en
