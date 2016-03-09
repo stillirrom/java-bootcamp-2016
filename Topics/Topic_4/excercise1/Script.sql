@@ -123,15 +123,16 @@ and en.Student_registrationNumberStudent = st.registrationNumberStudent
 and co.Teacher_idTeacher = te.idTeacher
 order by st.lastNameStudent ASC;
 
-SELECT count(n.finalNoteNotes) from Notes n, Course co, Enroll en
+SELECT co.nameCourse, count(*)/(SELECT count(*) from Enroll en where en.Course_idCourse = 1)*100 as porcentage
+from Notes n, Course co, Enroll en
 where n.finalNoteNotes >= 3
 and n.Enroll_idEnroll = en.idEnroll
 and en.Course_idCourse = co.idCourse
 group by co.nameCourse;
 
-SELECT co.nameCourse, count(*)/4*100
+SELECT co.nameCourse, count(*)/(SELECT count(*) from Enroll en where en.Course_idCourse = 1)*100 as porcentage
 from Notes n, Course co, Enroll en
-where n.finalNoteNotes >= 3
+where n.finalNoteNotes < 3
 and n.Enroll_idEnroll = en.idEnroll
 and en.Course_idCourse = co.idCourse
 group by co.nameCourse;
