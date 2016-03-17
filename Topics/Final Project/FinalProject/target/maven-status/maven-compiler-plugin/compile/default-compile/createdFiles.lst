@@ -1,0 +1,17 @@
+local\maven\finalProject\model\User.class
+local\maven\finalProject\model\Added.class
+local\maven\finalProject\model\Category.class
+local\maven\finalProject\dao\DAOConnection.class
+local\maven\finalProject\dao\DAOCategory.class
+local\maven\finalProject\dao\DAOUser.class
+local\maven\finalProject\rest\Application.class
+local\maven\finalProject\dao\DAOItem.class
+local\maven\finalProject\rest\Controller.class
+local\maven\finalProject\model\Error.class
+local\maven\finalProject\model\Cart.class
+local\maven\finalProject\model\Item.class
+local\maven\finalProject\dao\DAOCart.class
+local\maven\finalProject\model\Checkout.class
+local\maven\finalProject\services\ServicesImp.class
+local\maven\finalProject\services\ServicesShoppingCart.class
+local\maven\finalProject\dao\DAOAdded.class
